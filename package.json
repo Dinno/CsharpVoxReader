@@ -1,0 +1,11 @@
+{
+  "name": "com.dinno.csharpvoxreader",
+  "description": "Loader from MagicaVoxel's vox format.",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "unityRelease": "0f6",
+  "displayName": "CsharpVoxReader",
+  "dependencies": {
+  },
+  "keywords": []
+}
