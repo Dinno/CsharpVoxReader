@@ -17,9 +17,9 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            Int32 id = br.ReadInt32();
+            int id = br.ReadInt32();
             Dictionary<string, byte[]> attributes = GenericsReader.ReadDict(br, ref readSize);
-            readSize += sizeof(Int32);
+            readSize += sizeof(int);
 
             loader.NewMaterial(id, attributes);
             return readSize;

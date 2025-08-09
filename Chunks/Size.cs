@@ -16,16 +16,16 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            Int32 x = br.ReadInt32();
-            Int32 z = br.ReadInt32();
-            Int32 y = br.ReadInt32();
-            readSize += sizeof(Int32) * 3;
+            int x = br.ReadInt32();
+            int z = br.ReadInt32();
+            int y = br.ReadInt32();
+            readSize += sizeof(int) * 3;
 
-            string id = Chunk.ReadChunkId(br);
+            string id = ReadChunkId(br);
             readSize += 4;
             if(id != Model.ID) throw new InvalidDataException($"Can't read VOX file : XYZI chunk expected (was {id})");
 
-            Model model = Chunk.CreateChunk(id) as Model;
+            Model model = CreateChunk(id) as Model;
             model.Init(x, y, z);
             readSize += model.Read(br, loader);
 

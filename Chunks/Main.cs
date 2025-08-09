@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace CsharpVoxReader.Chunks
 {
@@ -26,8 +24,8 @@ namespace CsharpVoxReader.Chunks
 
             while (childrenReadSize < ChildrenSize)
             {
-                string id = Chunk.ReadChunkId(br);
-                Chunk child = Chunk.CreateChunk(id);
+                string id = ReadChunkId(br);
+                Chunk child = CreateChunk(id);
                 childrenReadSize += child.Read(br, loader) + 4;
             }
 

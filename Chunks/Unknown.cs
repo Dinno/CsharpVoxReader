@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CsharpVoxReader.Chunks
+﻿namespace CsharpVoxReader.Chunks
 {
     public class Unknown : Chunk
     {
-        private string _Id;
+        private string _id;
 
         public Unknown(string id)
         {
-            _Id = id;
+            _id = id;
         }
 
         internal override string Id
         {
             get
             {
-                return _Id;
+                return _id;
             }
         }
 

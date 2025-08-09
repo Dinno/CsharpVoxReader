@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -7,7 +6,7 @@ namespace CsharpVoxReader
 {
     public class VoxReader
     {
-        private const Int32 FILE_FORMAT_VERSION = 150;
+        private const int FILE_FORMAT_VERSION = 150;
 
         protected string Path { get; set; }
         protected IVoxLoader Loader { get; set; }
@@ -51,7 +50,7 @@ namespace CsharpVoxReader
                   throw new InvalidDataException("Can't read VOX file : invalid vox signature");
               }
 
-              Int32 version = br.ReadInt32();
+              int version = br.ReadInt32();
               if(version > FILE_FORMAT_VERSION)
               {
                   throw new InvalidDataException($"Can't read VOX file : file format version ({version}) is newer than reader version ({FILE_FORMAT_VERSION})");

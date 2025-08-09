@@ -8,8 +8,8 @@ namespace CsharpVoxReader
   public class GenericsReader {
 
     public static byte[] ReadByteArray(BinaryReader br, ref int readsize) {
-      Int32 numChars = br.ReadInt32();
-      readsize += sizeof(Int32) + numChars;
+      int numChars = br.ReadInt32();
+      readsize += sizeof(int) + numChars;
 
       return br.ReadBytes(numChars);
     }
@@ -17,8 +17,8 @@ namespace CsharpVoxReader
     public static Dictionary<string, byte[]> ReadDict(BinaryReader br, ref int readsize) {
       Dictionary<string, byte[]> result = new Dictionary<string, byte[]>();
 
-      Int32 numElements = br.ReadInt32();
-      readsize += sizeof(Int32);
+      int numElements = br.ReadInt32();
+      readsize += sizeof(int);
 
       for (int i=0; i < numElements; i++) {
         string key = Encoding.UTF8.GetString(ReadByteArray(br, ref readsize));
@@ -34,12 +34,12 @@ namespace CsharpVoxReader
       byte rot = br.ReadByte();
       readsize += 1;
 
-      int r0v = ((rot & 8) == 0)?1:-1;
-      int r1v = ((rot & 16) == 0)?1:-1;
-      int r2v = ((rot & 32) == 0)?1:-1;
+      int r0V = ((rot & 8) == 0)?1:-1;
+      int r1V = ((rot & 16) == 0)?1:-1;
+      int r2V = ((rot & 32) == 0)?1:-1;
 
-      int r0i = rot & 3;
-      int r1i = (rot & 12) >> 2;
+      int r0I = rot & 3;
+      int r1I = (rot & 12) >> 2;
       /*
       Truth table for the third index
         r0| 0 | 1 | 2 |
@@ -54,13 +54,13 @@ namespace CsharpVoxReader
       Derived function
       f(r0, r1) = 3 - r0 - r1
       */
-      int r2i = 3 - r0i - r1i;
+      int r2I = 3 - r0I - r1I;
 
       int[] result = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-      result[r0i] = r0v;
-      result[r1i + 3] = r1v;
-      result[r2i + 6] = r2v;
+      result[r0I] = r0V;
+      result[r1I + 3] = r1V;
+      result[r2I + 6] = r2V;
 
       return result;
     }
