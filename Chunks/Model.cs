@@ -7,7 +7,7 @@ namespace CsharpVoxReader.Chunks
     {
         public const string ID = "XYZI";
 
-        private byte[,,] _Indexes;
+        private byte[,,] _indexes;
 
         internal override string Id
         {
@@ -16,15 +16,15 @@ namespace CsharpVoxReader.Chunks
 
         public byte[,,] Indexes
         {
-            get { return _Indexes; }
+            get { return _indexes; }
         }
 
         internal override int Read(BinaryReader br, IVoxLoader loader)
         {
             int readSize = base.Read(br, loader);
 
-            Int32 numVoxels = br.ReadInt32();
-            readSize += sizeof(Int32);
+            int numVoxels = br.ReadInt32();
+            readSize += sizeof(int);
 
             for (int i = 0; i < numVoxels; i++)
             {
@@ -32,7 +32,7 @@ namespace CsharpVoxReader.Chunks
                 byte z = br.ReadByte();
                 byte y = br.ReadByte();
                 byte index = br.ReadByte();
-                _Indexes[x, y, z] = index;
+                _indexes[x, y, z] = index;
                 readSize += 4;
             }
             return readSize;
@@ -40,7 +40,7 @@ namespace CsharpVoxReader.Chunks
 
         public void Init(int sizeX, int sizeY, int sizeZ)
         {
-            _Indexes = new byte[sizeX, sizeY, sizeZ];
+            _indexes = new byte[sizeX, sizeY, sizeZ];
         }
     }
 }

@@ -16,8 +16,8 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            Int32 numModels = br.ReadInt32();
-            readSize += sizeof(Int32);
+            int numModels = br.ReadInt32();
+            readSize += sizeof(int);
 
             loader.SetModelCount(numModels);
 

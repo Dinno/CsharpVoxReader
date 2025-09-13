@@ -16,13 +16,13 @@ namespace CsharpVoxReader.Chunks
         internal override int Read(BinaryReader br, IVoxLoader loader)
         {
             int readSize = base.Read(br, loader);
-            Int32 id = br.ReadInt32();
+            int id = br.ReadInt32();
             Dictionary<string, byte[]> attributes = GenericsReader.ReadDict(br, ref readSize);
 
 			attributes.TryGetName(out var name);
 
-            Int32 reservedId = br.ReadInt32();
-            readSize += sizeof(Int32) * 2;
+            int reservedId = br.ReadInt32();
+            readSize += sizeof(int) * 2;
 
             loader.NewLayer(id, name, attributes);
             return readSize;

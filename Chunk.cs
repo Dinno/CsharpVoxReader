@@ -1,24 +1,23 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 
 namespace CsharpVoxReader
 {
     public abstract class Chunk
     {
-        private Int32 _Size;
-        private Int32 _ChildrenSize;
+        private int _size;
+        private int _childrenSize;
 
         internal abstract string Id { get; }
 
-        internal Int32 Size
+        internal int Size
         {
-            get { return _Size; }
+            get { return _size; }
         }
 
-        internal Int32 ChildrenSize
+        internal int ChildrenSize
         {
-            get { return _ChildrenSize; }
+            get { return _childrenSize; }
         }
 
         internal static string ReadChunkId(BinaryReader br)
@@ -34,10 +33,10 @@ namespace CsharpVoxReader
             if (br == null) throw new ArgumentNullException(nameof(br));
             if (loader == null) throw new ArgumentNullException(nameof(loader));
 
-            _Size = br.ReadInt32();
-            _ChildrenSize = br.ReadInt32();
+            _size = br.ReadInt32();
+            _childrenSize = br.ReadInt32();
 
-            return sizeof(Int32) * 2;
+            return sizeof(int) * 2;
         }
 
         internal static Chunk CreateChunk(string id)

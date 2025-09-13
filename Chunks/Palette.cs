@@ -11,7 +11,7 @@ namespace CsharpVoxReader.Chunks
             get { return ID; }
         }
 
-        public static readonly UInt32[] DefaultPalette =
+        public static readonly uint[] DefaultPalette =
         {
             0x00000000, 0xffffffff, 0xffccffff, 0xff99ffff, 0xff66ffff, 0xff33ffff, 0xff00ffff, 0xffffccff, 0xffccccff, 0xff99ccff, 0xff66ccff, 0xff33ccff, 0xff00ccff, 0xffff99ff, 0xffcc99ff, 0xff9999ff,
             0xff6699ff, 0xff3399ff, 0xff0099ff, 0xffff66ff, 0xffcc66ff, 0xff9966ff, 0xff6666ff, 0xff3366ff, 0xff0066ff, 0xffff33ff, 0xffcc33ff, 0xff9933ff, 0xff6633ff, 0xff3333ff, 0xff0033ff, 0xffff00ff,
@@ -35,7 +35,7 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            UInt32[] palette = new UInt32[256];
+            uint[] palette = new uint[256];
             for (int i = 0; i <= 254; i++)
             {
                 byte r = br.ReadByte();
@@ -43,7 +43,7 @@ namespace CsharpVoxReader.Chunks
                 byte b = br.ReadByte();
                 byte a = br.ReadByte();
 
-                palette[i + 1] = BitConverter.ToUInt32(new byte[] { b, g, r, a }, 0);
+                palette[i + 1] = BitConverter.ToUInt32(new[] { b, g, r, a }, 0);
                 readSize += 4;
             }
 

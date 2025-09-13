@@ -1,3 +1,4 @@
 {
-	"name": "CsharpVoxReader"
+	"name": "CsharpVoxReader",
+	"rootNamespace": "CsharpVoxReader"
 }

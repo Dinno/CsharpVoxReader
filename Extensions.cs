@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CsharpVoxReader
 {
@@ -16,7 +13,7 @@ namespace CsharpVoxReader
         /// <param name="r">Red value</param>
         /// <param name="g">Green value</param>
         /// <param name="b">Blue value</param>
-        public static void ToARGB(this UInt32 value, out byte a, out byte r, out byte g, out byte b)
+        public static void ToArgb(this uint value, out byte a, out byte r, out byte g, out byte b)
         {
             byte[] bytes = BitConverter.GetBytes(value);
             a = bytes[3];

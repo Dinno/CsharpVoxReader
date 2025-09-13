@@ -11,7 +11,7 @@ namespace CsharpVoxReader.Chunks
             get { return ID; }
         }
 
-        public enum MaterialTypes : Int32
+        public enum MaterialTypes
         {
             Diffuse = 0,
             Metal = 1,
@@ -20,12 +20,12 @@ namespace CsharpVoxReader.Chunks
         };
 
         [Flags]
-        public enum PropertyBits : UInt32
+        public enum PropertyBits : uint
         {
             Plastic         = 1 << 0,
             Roughness       = 1 << 1,
             Specular        = 1 << 2,
-            IOR             = 1 << 3,
+            Ior             = 1 << 3,
             Attenuation     = 1 << 4,
             Power           = 1 << 5,
             Glow            = 1 << 6,
@@ -36,12 +36,12 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            Int32 paletteId = br.ReadInt32();
-            Int32 type = br.ReadInt32();
+            int paletteId = br.ReadInt32();
+            int type = br.ReadInt32();
             float weight = br.ReadSingle();
-            UInt32 property = br.ReadUInt32();
+            uint property = br.ReadUInt32();
             float normalized = br.ReadSingle();
-            readSize += sizeof(Int32) * 2 + sizeof(UInt32) + sizeof(float) * 2;
+            readSize += sizeof(int) * 2 + sizeof(uint) + sizeof(float) * 2;
 
             loader.SetMaterialOld(paletteId, (MaterialTypes)type, weight, (PropertyBits)property, normalized);
 

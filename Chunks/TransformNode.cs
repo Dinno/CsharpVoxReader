@@ -17,17 +17,17 @@ namespace CsharpVoxReader.Chunks
         {
             int readSize = base.Read(br, loader);
 
-            Int32 id = br.ReadInt32();
+            int id = br.ReadInt32();
             Dictionary<string, byte[]> attributes = GenericsReader.ReadDict(br, ref readSize);
 
             attributes.TryGetName(out var name);
 
-            Int32 childNodeId = br.ReadInt32();
-            Int32 reservedId = br.ReadInt32();
-            Int32 layerId = br.ReadInt32();
-            Int32 numOfFrames = br.ReadInt32();
+            int childNodeId = br.ReadInt32();
+            int reservedId = br.ReadInt32();
+            int layerId = br.ReadInt32();
+            int numOfFrames = br.ReadInt32();
 
-            readSize += sizeof(Int32) * 5;
+            readSize += sizeof(int) * 5;
 
             Dictionary<string, byte[]>[] framesAttributes = new Dictionary<string, byte[]>[numOfFrames];
 
